@@ -1,0 +1,206 @@
+{
+  "info": {
+    "name": "SaludPlus Microservices API",
+    "description": "Test collection for cita-service (8083) and medico-service (8082)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Medico Service",
+      "item": [
+        {
+          "name": "POST - Crear Medico",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Dr. Juan Garcia\",\n  \"especialidad\": \"Cardiologia\",\n  \"telefono\": \"555-1234\",\n  \"correo\": \"juan@saludplus.com\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8082/api/medicos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8082",
+              "path": ["api", "medicos"]
+            },
+            "description": "Crea un nuevo medico. Anota el ID que retorna para usarlo en las siguientes peticiones."
+          }
+        },
+        {
+          "name": "GET - Listar Todos los Medicos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/medicos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8082",
+              "path": ["api", "medicos"]
+            },
+            "description": "Lista todos los medicos registrados. Usa esta peticion para ver los IDs disponibles."
+          }
+        },
+        {
+          "name": "GET - Obtener Medico por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/medicos/2",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8082",
+              "path": ["api", "medicos", "2"]
+            },
+            "description": "Obtiene informacion de un medico por ID. Cambia el numero al final de la URL por el ID que deseas consultar."
+          }
+        },
+        {
+          "name": "PUT - Actualizar Medico",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Dr. Juan Garcia Actualizado\",\n  \"especialidad\": \"Cardiologia\",\n  \"telefono\": \"555-9999\",\n  \"correo\": \"juan.updated@saludplus.com\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8082/api/medicos/2",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8082",
+              "path": ["api", "medicos", "2"]
+            },
+            "description": "Actualiza un medico existente. Cambia el ID en la URL segun el medico que deseas actualizar."
+          }
+        },
+        {
+          "name": "DELETE - Eliminar Medico",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/medicos/2",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8082",
+              "path": ["api", "medicos", "2"]
+            },
+            "description": "Elimina un medico por su ID. Retorna 204 No Content si fue exitoso, o 404 si no existe."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cita Service",
+      "item": [
+        {
+          "name": "POST - Agendar Cita",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fecha\": \"2026-07-15\",\n  \"hora\": \"14:30\",\n  \"nombrePaciente\": \"Carlos Lopez\",\n  \"motivo\": \"Consulta general\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8083/api/citas/agendar/2",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8083",
+              "path": ["api", "citas", "agendar", "2"]
+            },
+            "description": "Agenda una nueva cita para el medico con ID 2. Cambia el ultimo numero de la URL para usar otro medico. IMPORTANTE: primero lista los medicos para verificar el ID correcto."
+          }
+        },
+        {
+          "name": "GET - Listar todas las Citas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8083/api/citas",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8083",
+              "path": ["api", "citas"]
+            },
+            "description": "Lista todas las citas registradas en el sistema."
+          }
+        },
+        {
+          "name": "GET - Obtener Cita por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8083/api/citas/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8083",
+              "path": ["api", "citas", "1"]
+            },
+            "description": "Obtiene los detalles de una cita especifica por su ID."
+          }
+        },
+        {
+          "name": "PUT - Actualizar Cita",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fecha\": \"2026-07-20\",\n  \"hora\": \"15:00\",\n  \"nombrePaciente\": \"Carlos Lopez Actualizado\",\n  \"motivo\": \"Consulta cardiologia\",\n  \"medicoId\": 2\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8083/api/citas/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8083",
+              "path": ["api", "citas", "1"]
+            },
+            "description": "Actualiza una cita existente. Puedes enviar solo los campos que deseas modificar (actualizacion parcial)."
+          }
+        },
+        {
+          "name": "DELETE - Cancelar Cita",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8083/api/citas/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8083",
+              "path": ["api", "citas", "1"]
+            },
+            "description": "Cancela (elimina) una cita por su ID. Retorna 204 No Content si fue exitoso, o 404 si no existe."
+          }
+        }
+      ]
+    }
+  ]
+}
+
